@@ -1,16 +1,7 @@
 import Link from "next/link";
 import { LEGENDS } from "./legends-data";
 import { Section } from "./section";
-
-// The stand-in headshot: one solid shape, head and shoulders, in the edge grey. Never translucent.
-function Shade({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" className={className}>
-      <circle cx="50" cy="34" r="20" />
-      <path d="M 8 100 C 8 74 26 62 50 62 C 74 62 92 74 92 100 Z" />
-    </svg>
-  );
-}
+import { Cover, Shade } from "./shapes";
 
 export function Legends() {
   const total = LEGENDS.reduce((n, l) => n + l.count, 0);
@@ -26,6 +17,8 @@ export function Legends() {
                 {bust ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={`/legends/${slug}.png`} alt={name} className="h-full w-full object-contain object-bottom" />
+                ) : slug === "books" ? (
+                  <Cover className="h-3/4 text-edge" />
                 ) : (
                   <Shade className="h-full w-full text-edge" />
                 )}
