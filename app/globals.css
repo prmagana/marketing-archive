@@ -19,9 +19,47 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-spot: var(--spot);
+  --font-sans: var(--font-product-sans);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Slim, track-less scrollbar on every scrollable surface: a whisper at rest, warming on hover,
+   following --foreground. The transparent border plus background-clip insets the thumb so it reads
+   thin with air around it. The standard scrollbar properties are Firefox-only on purpose: set for
+   everyone, Chromium prefers its native thin bar, arrows and all, and ignores the rules below.
+   Same block as the player. */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--foreground) 26%, transparent) transparent;
+  }
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  cursor: default;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+  cursor: default;
+}
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--foreground) 26%, transparent);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  cursor: default;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--foreground) 40%, transparent);
 }
