@@ -1,4 +1,7 @@
+import { shelves, type Book } from "./books";
+import { Legends } from "./legends";
 import { Nav } from "./nav";
+import { Section } from "./section";
 
 // Evaluated once at build, so the page reads as the last deploy. In dev it is simply today.
 const updated = new Date().toISOString().slice(0, 10);
@@ -31,6 +34,23 @@ export default function Home() {
             </span>
             <span>updated {updated}</span>
           </p>
+          {/* The shelves, design's rhythm: a heading with the count on the right, then the titles as a plain list. */}
+          {shelves.map(({ title, books }) => (
+            <Section key={title} title={title} count={books.filter(Boolean).length}>
+              <ul className="font-mono text-xs">
+                {books.map((book: Book, i) => {
+                  if (book === null) return <li key={i} className="h-6" />;
+                  const [title, ink] = typeof book === "string" ? [book] : book;
+                  return (
+                    <li key={title} className={`border-b border-edge py-2 ${ink === "light" ? "text-foreground/30" : ink === "mid" ? "text-foreground/60" : ""}`}>
+                      {title}
+                    </li>
+                  );
+                })}
+              </ul>
+            </Section>
+          ))}
+          <Legends />
         </div>
       </main>
     </>
