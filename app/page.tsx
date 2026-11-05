@@ -15,10 +15,15 @@ export default function Home() {
       <main className="flex-1 px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl pt-16 pb-24 sm:pt-24">
           {/* Everything softened except the brand word, so "tapt" is the one thing at full ink. */}
-          <h1 className="max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-foreground/70 sm:text-5xl">
-            {/* First segment never breaks on wider screens, so marketing always closes line one. */}
-            <span className="sm:whitespace-nowrap">The start of a vast “marketing”</span><br />
-            source for <span className="text-foreground">tapt</span>.
+          <h1 className="max-w-4xl text-[1.625rem] font-semibold leading-tight tracking-tight text-foreground/70 sm:text-5xl">
+            {/* Wide: the first segment holds and a break puts marketing at the end of line one. Phone: no break,
+                natural wrap, and "for tapt." travels as one piece so the brand never sits alone on a line. */}
+            <span className="sm:whitespace-nowrap">The start of a vast “marketing”</span>
+            <br className="hidden sm:inline" />{" "}
+            source{" "}
+            <span className="whitespace-nowrap">
+              for <span className="text-foreground">tapt</span>.
+            </span>
           </h1>
           {/* What the page is, in two lines: a record of the research, and why the domain is the wrong size for it. */}
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
