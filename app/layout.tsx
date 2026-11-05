@@ -14,7 +14,7 @@ const productSans = localFont({
 
 export const metadata: Metadata = {
   title: "Marketing",
-  description: "The energy marketing pulls from, collected for tapt.",
+  description: "The start of a vast marketing source for tapt.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
