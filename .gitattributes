@@ -1,0 +1,8 @@
+# LF in the repo on every machine. Fonts and images stay bytes.
+* text=auto eol=lf
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.png binary
+*.ico binary
+*.webp binary

@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* tapt.so's light tokens, same names as design so bg-background etc. resolve identically. Light only for now. */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --surface: #ffffff;
+  --edge: oklch(92% 0.004 286.32);
+  --ink: #000000;
+  --muted: oklch(70.5% 0.015 286.067);
+  --spot: oklch(96.7% 0.001 286.375);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-edge: var(--edge);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-spot: var(--spot);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
