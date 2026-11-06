@@ -3,6 +3,7 @@ import { shelves, type Book, type Ink } from "./books";
 import { DOCS } from "./docs";
 import { Legends } from "./legends";
 import { Nav } from "./nav";
+import { Pillars } from "./pillars";
 import { Section } from "./section";
 
 // Inlined at build from next.config.ts, so the page reads as the last deploy. In dev it is simply today.
@@ -72,6 +73,7 @@ export default function Home() {
             </Section>
           ))}
           <Legends />
+          <Pillars />
         </div>
       </main>
     </>
