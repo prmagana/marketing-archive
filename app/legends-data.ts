@@ -21,7 +21,7 @@ export const LEGENDS: Legend[] = [
   { slug: "books", route: "books", name: "Books", prefix: "books/", bust: false, count: 9 },
 ];
 
-// In the bucket but off the site. Bruno sits out until there is a place for him.
+// In the bucket and served, but kept off the catalogs. Bruno is reached from his own shelf instead.
 export const HIDDEN = new Set(["books/cause-principle-and-unity.pdf"]);
 
 export const legend = (route: string) => LEGENDS.find((l) => l.route === route);

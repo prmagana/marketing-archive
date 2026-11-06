@@ -56,10 +56,15 @@ export default function Home() {
               <ul className="font-mono text-xs">
                 {books.map((book: Book, i) => {
                   if (book === null) return <li key={i} className="h-6" />;
-                  const [title, ink]: [string, Ink?] = typeof book === "string" ? [book] : book;
+                  const [title, ink, href]: [string, Ink?, string?] =
+                    typeof book === "string" ? [book] : Array.isArray(book) ? book : [book.title, book.ink, book.href];
                   return (
                     <li key={title} className={`border-b border-edge py-2 ${ink === "light" ? "text-foreground/30" : ink === "mid" ? "text-foreground/60" : ""}`}>
-                      {title}
+                      {href ? (
+                        <a href={href} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4 decoration-1">{title}</a>
+                      ) : (
+                        title
+                      )}
                     </li>
                   );
                 })}

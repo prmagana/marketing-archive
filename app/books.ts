@@ -2,8 +2,9 @@
 // desk; the three psychology shelves are the list as handed over, Jung's essays filed under depth.
 // A title alone is solid ink. The second slot carries the two lighter inks the Drive doc uses: mid and light.
 export type Ink = "mid" | "light";
-// null is a gap in the list, the way the doc uses a rule between groups.
-export type Book = string | [string, Ink] | null;
+// null is a gap in the list, the way the doc uses a rule between groups. An object is a title with the file
+// behind it: the line opens the PDF in a new tab.
+export type Book = string | [string, Ink] | { title: string; ink?: Ink; href: string } | null;
 
 export const shelves: { title: string; books: Book[] }[] = [
   {
@@ -134,7 +135,7 @@ export const shelves: { title: string; books: Book[] }[] = [
   },  {
     title: "Bruno",
     books: [
-      ["DE LA CAUSA, PRINCIPIO ET UNO", "light"],
+      { title: "DE LA CAUSA, PRINCIPIO ET UNO", ink: "light", href: "/corpus/books/cause-principle-and-unity.pdf" },
       ["DE MAGIA", "mid"],
       "DE VINCULIS IN GENERE",
       ["DE UMBRIS IDEARUM, ARS MEMORIAE", "mid"],

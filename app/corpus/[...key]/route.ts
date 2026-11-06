@@ -1,13 +1,11 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { HIDDEN } from "../../legends-data";
 
-// Streams one object out of the bucket, by its full key. Only the shelves' prefixes are reachable, and
-// nothing on the hidden list.
+// Streams one object out of the bucket, by its full key. Only the shelves' prefixes are reachable.
 const OPEN = ["swipes/", "books/"];
 
 export async function GET(_: Request, { params }: RouteContext<"/corpus/[...key]">) {
   const key = (await params).key.join("/");
-  if (!OPEN.some((p) => key.startsWith(p)) || HIDDEN.has(key)) return new Response(null, { status: 404 });
+  if (!OPEN.some((p) => key.startsWith(p))) return new Response(null, { status: 404 });
 
   const { env } = await getCloudflareContext({ async: true });
   const object = await env.CORPUS.get(key);
