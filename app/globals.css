@@ -20,6 +20,7 @@
   --color-muted: var(--muted);
   --color-spot: var(--spot);
   --font-sans: var(--font-product-sans);
+  --font-mono: var(--font-courier-prime);
 }
 
 body {

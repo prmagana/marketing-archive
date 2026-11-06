@@ -1,10 +1,12 @@
-import { shelves, type Book } from "./books";
+import Link from "next/link";
+import { shelves, type Book, type Ink } from "./books";
+import { DOCS } from "./docs";
 import { Legends } from "./legends";
 import { Nav } from "./nav";
 import { Section } from "./section";
 
-// Evaluated once at build, so the page reads as the last deploy. In dev it is simply today.
-const updated = new Date().toISOString().slice(0, 10);
+// Inlined at build from next.config.ts, so the page reads as the last deploy. In dev it is simply today.
+const updated = process.env.BUILD_DATE!;
 
 // Design's opening: headline, subline, the dot. The collection fills in beneath it over time.
 export default function Home() {
@@ -39,13 +41,22 @@ export default function Home() {
             </span>
             <span>updated {updated}</span>
           </p>
+          {/* The tools, left to right in the order a funnel meets them, one per document in content/. Docs' tab
+              row in Courier, minus the bar: dim at rest, full ink and an underline on hover. */}
+          <nav aria-label="Tools" className="mt-16 flex flex-wrap items-center gap-6">
+            {DOCS.map((d) => (
+              <Link key={d.slug} href={`/${d.slug}`} className="inline-flex h-9 select-none items-center whitespace-nowrap border-b border-transparent font-mono text-sm font-bold text-foreground/60 transition-colors hover:border-foreground/30 hover:text-foreground hover:transition-none">
+                {d.title}
+              </Link>
+            ))}
+          </nav>
           {/* The shelves, design's rhythm: a heading with the count on the right, then the titles as a plain list. */}
           {shelves.map(({ title, books }) => (
             <Section key={title} title={title} count={books.filter(Boolean).length}>
               <ul className="font-mono text-xs">
                 {books.map((book: Book, i) => {
                   if (book === null) return <li key={i} className="h-6" />;
-                  const [title, ink] = typeof book === "string" ? [book] : book;
+                  const [title, ink]: [string, Ink?] = typeof book === "string" ? [book] : book;
                   return (
                     <li key={title} className={`border-b border-edge py-2 ${ink === "light" ? "text-foreground/30" : ink === "mid" ? "text-foreground/60" : ""}`}>
                       {title}

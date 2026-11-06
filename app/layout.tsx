@@ -12,6 +12,19 @@ const productSans = localFont({
   display: "swap",
 });
 
+// Courier Prime, the typewriter face, for every mono surface: the shelves, the labels, and the documents.
+// Open Font License; the license text sits beside the files.
+const courierPrime = localFont({
+  src: [
+    { path: "./fonts/CourierPrime-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/CourierPrime-Italic.ttf", weight: "400", style: "italic" },
+    { path: "./fonts/CourierPrime-Bold.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/CourierPrime-BoldItalic.ttf", weight: "700", style: "italic" },
+  ],
+  variable: "--font-courier-prime",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Marketing",
   description: "The start of a vast marketing source for tapt.",
@@ -19,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${productSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${productSans.variable} ${courierPrime.variable} h-full antialiased`}>
       {/* className on body, same as design, so every element inherits the face. */}
       <body className={`${productSans.className} flex min-h-full flex-col bg-background text-foreground`}>
         {children}
